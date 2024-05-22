@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="2324_2A_FileUploadSample" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-E6RG946U;Initial Catalog=2324_2A_FileUploadSample;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False" SettingsObjectName="_2324_2Y_2A_Integ_FileUploadSample.Properties.Settings" SettingsPropertyName="_2324_2A_FileUploadSampleConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.uspAddUser" Method="uspAddUser">
+    <Parameter Name="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspUpdatePicturePath" Method="uspUpdatePicturePath">
+    <Parameter Name="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="userPicturePath" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspUpdateProfilePath" Method="uspUpdateProfilePath">
+    <Parameter Name="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="userProfilePath" Type="System.String" DbType="NVarChar(100)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.uspSelectOneUser" Method="uspSelectOneUser">
+    <Parameter Name="userName" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="uspSelectOneUserResult">
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserPicturePath" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UserProfilePath" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.uspSelectAllUsers" Method="uspSelectAllUsers">
+    <ElementType Name="uspSelectAllUsersResult">
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

@@ -30,6 +30,9 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertUserSample(UserSample instance);
+    partial void UpdateUserSample(UserSample instance);
+    partial void DeleteUserSample(UserSample instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -62,18 +65,12 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspAddUser")]
-		public int uspAddUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName)
+		public System.Data.Linq.Table<UserSample> UserSamples
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspUpdatePicturePath")]
-		public int uspUpdatePicturePath([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string userPicturePath)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, userPicturePath);
-			return ((int)(result.ReturnValue));
+			get
+			{
+				return this.GetTable<UserSample>();
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspUpdateProfilePath")]
@@ -83,11 +80,11 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspSelectOneUser")]
-		public ISingleResult<uspSelectOneUserResult> uspSelectOneUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspAddUser")]
+		public int uspAddUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName);
-			return ((ISingleResult<uspSelectOneUserResult>)(result.ReturnValue));
+			return ((int)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspSelectAllUsers")]
@@ -95,6 +92,156 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<uspSelectAllUsersResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspSelectOneUser")]
+		public ISingleResult<uspSelectOneUserResult> uspSelectOneUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName);
+			return ((ISingleResult<uspSelectOneUserResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.uspUpdatePicturePath")]
+		public int uspUpdatePicturePath([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(100)")] string userPicturePath)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, userPicturePath);
+			return ((int)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserSample")]
+	public partial class UserSample : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _UserName;
+		
+		private string _UserPicturePath;
+		
+		private string _UserProfilePath;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnUserPicturePathChanging(string value);
+    partial void OnUserPicturePathChanged();
+    partial void OnUserProfilePathChanging(string value);
+    partial void OnUserProfilePathChanged();
+    #endregion
+		
+		public UserSample()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPicturePath", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string UserPicturePath
+		{
+			get
+			{
+				return this._UserPicturePath;
+			}
+			set
+			{
+				if ((this._UserPicturePath != value))
+				{
+					this.OnUserPicturePathChanging(value);
+					this.SendPropertyChanging();
+					this._UserPicturePath = value;
+					this.SendPropertyChanged("UserPicturePath");
+					this.OnUserPicturePathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserProfilePath", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string UserProfilePath
+		{
+			get
+			{
+				return this._UserProfilePath;
+			}
+			set
+			{
+				if ((this._UserProfilePath != value))
+				{
+					this.OnUserProfilePathChanging(value);
+					this.SendPropertyChanging();
+					this._UserProfilePath = value;
+					this.SendPropertyChanged("UserProfilePath");
+					this.OnUserProfilePathChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class uspSelectAllUsersResult
+	{
+		
+		private string _UserName;
+		
+		public uspSelectAllUsersResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this._UserName = value;
+				}
+			}
 		}
 	}
 	
@@ -127,7 +274,7 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPicturePath", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserPicturePath", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string UserPicturePath
 		{
 			get
@@ -143,7 +290,7 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserProfilePath", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserProfilePath", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string UserProfilePath
 		{
 			get
@@ -155,32 +302,6 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 				if ((this._UserProfilePath != value))
 				{
 					this._UserProfilePath = value;
-				}
-			}
-		}
-	}
-	
-	public partial class uspSelectAllUsersResult
-	{
-		
-		private string _UserName;
-		
-		public uspSelectAllUsersResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this._UserName = value;
 				}
 			}
 		}

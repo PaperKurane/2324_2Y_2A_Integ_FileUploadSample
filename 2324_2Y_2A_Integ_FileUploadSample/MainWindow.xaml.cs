@@ -35,10 +35,11 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
         public MainWindow()
         {
             InitializeComponent();
-            _dbConn = new DataClasses1DataContext(Properties.Settings.Default._2324_2A_FileUploadSampleConnectionString);
+            _dbConn = new DataClasses1DataContext(Properties.Settings.Default._2324_2A_FileUploadSampleConnectionString1);
             populateCB();
 
-            picPath = @"C:\ProgrammingShit\Images\";
+            //picPath = @"C:\ProgrammingShit\Images\";
+            picPath = @"C:\Standard\";
             profPath = @"C:\ProgrammingShit\Profile\";
 
             _default.BeginInit();

@@ -12,7 +12,7 @@ namespace _2324_2Y_2A_Integ_FileUploadSample.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.4.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,21 @@ namespace _2324_2Y_2A_Integ_FileUploadSample.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-E6RG946U;Initial Catalog=2324_2A_FileUploadSample;Integrated S" +
-            "ecurity=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CLOUDCOMPUTER\\SQLEXPRESS;Initial Catalog=2324_2A_FileUploadSample;Int" +
+            "egrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=Fa" +
+            "lse")]
+        public string _2324_2A_FileUploadSampleConnectionString1 {
+            get {
+                return ((string)(this["_2324_2A_FileUploadSampleConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=CLOUDCOMPUTER\\SQLEXPRESS;Initial Catalog=2324_2A_FileUploadSample;Int" +
+            "egrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=Fa" +
+            "lse")]
         public string _2324_2A_FileUploadSampleConnectionString {
             get {
                 return ((string)(this["_2324_2A_FileUploadSampleConnectionString"]));

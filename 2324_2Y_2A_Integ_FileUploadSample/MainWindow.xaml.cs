@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
         string picPath = null;
         string profPath = null;
         BitmapImage _default = new BitmapImage();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +42,7 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 
             //picPath = @"C:\ProgrammingShit\Images\";
             picPath = @"C:\Standard\";
+            //picPath = @"E:\ProgrammingShit\TENDER Ordering System\Menu Items";
             profPath = @"C:\ProgrammingShit\Profile\";
 
             _default.BeginInit();
@@ -108,18 +111,83 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if(txtPath.Text.Length > 0 && cboxUserList.SelectedIndex > -1) 
+            if (txtPath.Text.Length > 0 && cboxUserList.SelectedIndex > -1)
             {
                 string[] temp = txtPath.Text.Split('.');
                 string ext = temp[temp.Length - 1];
                 //_dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), txtPath.Text);
-                
+
                 imageProfile.Source = _default;
                 File.Copy(txtPath.Text, picPath + cboxUserList.SelectedItem + "." + ext, true);
-                _dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(),cboxUserList.SelectedItem + "." + ext);
+                _dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), cboxUserList.SelectedItem + "." + ext);
                 txtPath.Text = "";
                 populateCB();
             }
         }
+
+        //private void btnSave_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (txtPath.Text.Length > 0 && cboxUserList.SelectedIndex > -1)
+        //    {
+        //        string[] temp = txtPath.Text.Split('.');
+        //        string ext = temp[temp.Length - 1];
+        //        string destinationPath = picPath + cboxUserList.SelectedItem + "." + ext;
+        //        string tempPath = System.IO.Path.Combine(picPath, Guid.NewGuid().ToString() + "." + ext);
+        //        //_dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), txtPath.Text);
+
+        //        File.Copy(txtPath.Text, tempPath);
+        //        File.Replace(tempPath, destinationPath, null);
+
+        //        //File.Copy(txtPath.Text, picPath + cboxUserList.SelectedItem + "." + ext, true);
+        //        //File.Copy(txtPath.Text, destinationPath, true);
+        //        _dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), cboxUserList.SelectedItem + "." + ext);
+
+        //        imageProfile.Source = _default;
+        //        txtPath.Text = "";
+        //        populateCB();
+        //    }
+        //}
+
+        //private void btnSave_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (txtPath.Text.Length > 0 && cboxUserList.SelectedIndex > -1)
+        //    {
+        //        string selectedUser = cboxUserList.SelectedItem.ToString();
+        //        string[] temp = txtPath.Text.Split('.');
+        //        string ext = temp[temp.Length - 1];
+        //        string newFilePath = System.IO.Path.Combine(picPath, selectedUser + "." + ext);
+
+        //        try
+        //        {
+        //            // Ensure the file is not in use and delete the old file if it exists
+        //            if (File.Exists(newFilePath))
+        //            {
+        //                File.SetAttributes(newFilePath, FileAttributes.Normal); // Ensure the file is not read-only
+        //                File.Delete(newFilePath);
+        //            }
+
+        //            // Copy the new file to the destination
+        //            using (FileStream sourceStream = new FileStream(txtPath.Text, FileMode.Open, FileAccess.Read, FileShare.Read))
+        //            {
+        //                using (FileStream destStream = new FileStream(newFilePath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+        //                {
+        //                    sourceStream.CopyTo(destStream);
+        //                }
+        //            }
+
+        //            // Update the database path
+        //            _dbConn.uspUpdatePicturePath(selectedUser, selectedUser + "." + ext);
+
+        //            // Update the UI
+        //            imageProfile.Source = _default;
+        //            txtPath.Text = "";
+        //            populateCB();
+        //        }
+        //        catch (IOException ex)
+        //        {
+        //            System.Windows.MessageBox.Show($"An error occurred while updating the image: {ex.Message}");
+        //        }
+        //    }
+        //}
     }
 }

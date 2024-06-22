@@ -20,6 +20,7 @@ using System.Configuration;
 using System.Windows.Forms;
 using System.Data.Odbc;
 using System.Net.NetworkInformation;
+using MessageBox = System.Windows.MessageBox;
 //using Microsoft.Win32;
 
 namespace _2324_2Y_2A_Integ_FileUploadSample
@@ -108,22 +109,72 @@ namespace _2324_2Y_2A_Integ_FileUploadSample
                 txtPath.Text = ofd.FileName;
             }
         }
+
         /// <summary>
         /// Sir's code
         /// </summary>
+        //private void btnSave_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (txtPath.Text.Length > 0 && cboxUserList.SelectedIndex > -1)
+        //    {
+        //        string[] temp = txtPath.Text.Split('.');
+        //        string ext = temp[temp.Length - 1];
+        //        //_dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), txtPath.Text);
+
+        //        imageProfile.Source = _default;
+        //        File.Copy(txtPath.Text, picPath + cboxUserList.SelectedItem + "." + ext, true);
+        //        _dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), cboxUserList.SelectedItem + "." + ext);
+        //        txtPath.Text = "";
+        //        populateCB();
+        //    }
+        //}
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (txtPath.Text.Length > 0 && cboxUserList.SelectedIndex > -1)
             {
+                string selectedUser = cboxUserList.SelectedItem.ToString();
                 string[] temp = txtPath.Text.Split('.');
                 string ext = temp[temp.Length - 1];
-                //_dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), txtPath.Text);
+                string newFilePath = System.IO.Path.Combine(picPath, selectedUser + "." + ext);
+                string tempFilePath = System.IO.Path.Combine(picPath, selectedUser + "_temp." + ext);
 
-                imageProfile.Source = _default;
-                File.Copy(txtPath.Text, picPath + cboxUserList.SelectedItem + "." + ext, true);
-                _dbConn.uspUpdatePicturePath(cboxUserList.SelectedItem.ToString(), cboxUserList.SelectedItem + "." + ext);
-                txtPath.Text = "";
-                populateCB();
+                try
+                {
+                    // Ensure the file is not in use and rename the old file if it exists
+                    if (File.Exists(newFilePath))
+                    {
+                        // Rename the old file to a temporary name
+                        File.Move(newFilePath, tempFilePath);
+                    }
+
+                    // Copy the new file to the destination
+                    File.Copy(txtPath.Text, newFilePath, true);
+
+                    // Update the database path
+                    _dbConn.uspUpdatePicturePath(selectedUser, selectedUser + "." + ext);
+
+                    // Delete the old file with the temporary name if it exists
+                    if (File.Exists(tempFilePath))
+                    {
+                        File.Delete(tempFilePath);
+                    }
+
+                    // Update the UI
+                    imageProfile.Source = _default;
+                    txtPath.Text = "";
+                    populateCB();
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show($"An error occurred while updating the image: {ex.Message}");
+
+                    // Attempt to restore the old file if an error occurred during copy
+                    if (File.Exists(tempFilePath))
+                    {
+                        File.Move(tempFilePath, newFilePath);
+                    }
+                }
             }
         }
 

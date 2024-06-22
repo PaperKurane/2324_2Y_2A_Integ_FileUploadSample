@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2324_2Y_2A_Integ_FileUploadSample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1123">
+        Title="MainWindow" Height="470" Width="730">
     <Grid>
         <TextBox x:Name="txtNewUser" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="323" FontSize="28"/>
         <Button x:Name="btnAddNewUser" Content="Add User" HorizontalAlignment="Left" Margin="338,10,0,0" VerticalAlignment="Top" FontSize="28" Click="btnAddNewUser_Click"/>
         <ComboBox x:Name="cboxUserList" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Width="446" FontSize="28" SelectionChanged="cboxUserList_SelectionChanged"/>
         <Image x:Name="imageProfile" HorizontalAlignment="Left" Height="220" Margin="10,97,0,0" VerticalAlignment="Top" Width="247" Source="/Images/Default.png" Stretch="Fill"/>
         <Button x:Name="btnUpdatePic" Content="Update Picture" HorizontalAlignment="Left" Margin="10,384,0,0" VerticalAlignment="Top" FontSize="28" Click="btnUpdatePic_Click"/>
-        <TextBox x:Name="txtPath" HorizontalAlignment="Center" Margin="0,340,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="1103" FontSize="28" IsEnabled="False"/>
+        <TextBox x:Name="txtPath" HorizontalAlignment="Center" Margin="0,340,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="680" FontSize="28" IsEnabled="False"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="202,384,0,0" VerticalAlignment="Top" FontSize="28" Click="btnSave_Click"/>
 
     </Grid>
